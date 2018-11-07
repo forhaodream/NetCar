@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@mipmap/icon_gradient_color">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/top"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/y5"
+            android:layout_marginLeft="@dimen/x20"
+            android:layout_marginRight="@dimen/x20"
+            android:layout_marginTop="@dimen/y15"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/x10"
+                android:layout_weight="1"
+                android:background="@drawable/kuang_suosou"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="@dimen/x10"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/x30"
+                        android:layout_height="@dimen/x30"
+                        android:src="@drawable/icon_tire_temperature"/>
+
+                    <TextView
+                        android:id="@+id/left_top_wendu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="胎温："/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="@dimen/x10"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/x30"
+                        android:layout_height="@dimen/x30"
+                        android:src="@drawable/icon_tire_pressure"/>
+
+                    <TextView
+                        android:id="@+id/left_top_yali"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="胎压："/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="@dimen/x10"
+                    android:layout_weight="1"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/left_top_gantan"
+                        android:layout_width="@dimen/x20"
+                        android:layout_height="@dimen/x30"
+                        android:layout_marginLeft="@dimen/x5"
+                        android:src="@drawable/icon_exclamatory_mark"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/x10"
+                android:layout_weight="1"
+                android:background="@drawable/kuang_suosou"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="@dimen/x10"
+                    android:layout_weight="1"
+
+                    android:gravity="right|center_vertical">
+
+                    <TextView
+                        android:id="@+id/riht_top_wendu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="胎温："/>
+
+                    <ImageView
+                        android:layout_width="@dimen/x30"
+                        android:layout_height="@dimen/x30"
+                        android:src="@drawable/icon_tire_temperature"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="@dimen/x10"
+                    android:layout_weight="1"
+                    android:gravity="right|center_vertical">
+
+                    <TextView
+                        android:id="@+id/riht_top_yali"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="胎压："/>
+
+                    <ImageView
+                        android:layout_width="@dimen/x30"
+                        android:layout_height="@dimen/x30"
+                        android:src="@drawable/icon_tire_pressure"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="@dimen/x10"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/right_top_gantan"
+                        android:layout_width="@dimen/x20"
+                        android:layout_height="@dimen/x30"
+                        android:layout_marginLeft="@dimen/x5"
+                        android:src="@drawable/icon_exclamatory_mark"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_below="@+id/top"
+            android:layout_marginBottom="@dimen/y10"
+            android:layout_marginLeft="@dimen/x20"
+            android:layout_marginRight="@dimen/x20"
+            android:layout_marginTop="@dimen/y10"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/x10"
+                android:layout_weight="1"
+                android:background="@drawable/kuang_suosou"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="@dimen/x10"
+                    android:layout_weight="1"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/left_bottom_gantan"
+                        android:layout_width="@dimen/x20"
+                        android:layout_height="@dimen/x30"
+                        android:layout_marginLeft="@dimen/x5"
+                        android:src="@drawable/icon_exclamatory_mark"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="@dimen/x10"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/x30"
+                        android:layout_height="@dimen/x30"
+                        android:src="@drawable/icon_tire_temperature"/>
+
+                    <TextView
+                        android:id="@+id/left_bottom_wendu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="胎压："/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="@dimen/x10"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/x30"
+                        android:layout_height="@dimen/x30"
+                        android:src="@drawable/icon_tire_pressure"/>
+
+                    <TextView
+                        android:id="@+id/left_bottom_yali"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="胎压："/>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/x10"
+                android:layout_weight="1"
+                android:background="@drawable/kuang_suosou"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="@dimen/x10"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/riht_bottom_gantan"
+                        android:layout_width="@dimen/x20"
+                        android:layout_height="@dimen/x30"
+                        android:layout_marginLeft="@dimen/x5"
+                        android:src="@drawable/icon_exclamatory_mark"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="@dimen/x10"
+                    android:layout_weight="1"
+                    android:gravity="right|center_vertical">
+
+                    <TextView
+                        android:id="@+id/riht_bottom_wendu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="胎温："/>
+
+                    <ImageView
+                        android:layout_width="@dimen/x30"
+                        android:layout_height="@dimen/y25"
+                        android:src="@drawable/icon_tire_temperature"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="@dimen/x10"
+                    android:layout_weight="1"
+                    android:gravity="right|center_vertical">
+
+                    <TextView
+                        android:id="@+id/riht_bottom_yali"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="胎压："/>
+
+                    <ImageView
+                        android:layout_width="@dimen/x30"
+                        android:layout_height="@dimen/x30"
+                        android:src="@drawable/icon_tire_pressure"/>
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/ivbtn"
+        android:layout_width="@dimen/x150"
+        android:layout_height="@dimen/y110"
+        android:layout_centerInParent="true"
+        android:background="@mipmap/icon_start_button"
+        android:scaleType="fitXY"/>
+</RelativeLayout>

@@ -1,0 +1,87 @@
+apply plugin: 'com.android.application'
+
+android {
+//    signingConfigs {
+//        config {
+//            keyAlias 'netcar'
+//            keyPassword '123456'
+//            storeFile file('C:/Users/VULCAN/Desktop/netcar.jks')
+//            storePassword '123456'
+//        }
+//    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+    compileSdkVersion 26
+    defaultConfig {
+        applicationId "com.land.netcar"
+        minSdkVersion 17
+        targetSdkVersion 26
+        versionCode 2
+        versionName "1.1"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            //选择要添加的对应cpu类型的.so库。
+            abiFilters 'armeabi', 'armeabi-v7a', 'armeabi-v8a','x86', 'x86_64', 'mips', 'mips64'
+            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+        }
+
+        manifestPlaceholders = [
+                JPUSH_PKGNAME: applicationId,
+                JPUSH_APPKEY : "9b51654363e40dce600f7044", //JPush上注册的包名对应的appkey.
+                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
+        ]
+    }
+    useLibrary 'org.apache.http.legacy'
+//    buildTypes {
+//        debug {
+//            debuggable false
+//            signingConfig signingConfigs.config
+//        }
+//    }
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    //noinspection GradleDependency
+    implementation 'com.jakewharton:butterknife:8.4.0'
+    compile 'com.facebook.fresco:fresco:0.9.0+'
+    //noinspection GradleDependency
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+    compile 'com.lzy.net:okgo:2.1.4'
+    compile 'com.google.code.gson:gson:2.2.4'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.alibaba:fastjson:1.2.44'
+    compile 'com.android.support:recyclerview-v7:26.1.0'
+    compile 'com.android.support:cardview-v7:26.1.0'
+    implementation files('libs/libammsdk.jar')
+    implementation files('libs/alipaySdk-20170922.jar')
+    //微信添加
+    compile 'org.apache.httpcomponents:httpcore:4.4.1'
+    implementation files('libs/AMap_Location_V3.8.0_20180201.jar')
+    implementation files('libs/Android_Map3D_SDK_V6.0.1_20180309.jar')
+    compile 'cn.jiguang.sdk:jpush:3.0.9'
+    // 此处以JPush 3.0.3 版本为例。
+    compile 'cn.jiguang.sdk:jcore:1.1.7'
+    // 此处以JCore 1.1.1 版本为例。
+    compile 'net.vidageek:mirror:1.6.1'
+    compile 'com.android.support:design:26.1.0'
+    implementation(name: 'liquorslib-debug', ext: 'aar')
+//    implementation 'com.github.forhaodream.ch:chtool:0.0.2'
+    implementation 'com.squareup.okhttp:okhttp:2.4.0'
+    implementation 'com.squareup.okio:okio:1.6.0'
+}

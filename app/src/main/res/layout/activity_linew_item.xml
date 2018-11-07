@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/x10">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:cardCornerRadius="10dp">
+
+            <TextView
+                android:id="@+id/tv_lines_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/x10"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/zhuang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_lines_name"
+                android:layout_margin="@dimen/x10"
+                android:background="@drawable/tv_kuang" />
+
+            <TextView
+                android:id="@+id/tv_lines_dele"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/tv_lines_bj"
+                android:layout_alignBottom="@+id/tv_lines_bj"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="@dimen/x15"
+                android:text="删除" />
+
+            <TextView
+                android:id="@+id/tv_lines_bj"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_lines_name"
+                android:layout_marginTop="@dimen/x15"
+                android:layout_toLeftOf="@+id/tv_lines_dele"
+                android:text="编辑" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</RelativeLayout>
