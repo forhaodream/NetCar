@@ -382,9 +382,17 @@ public class MainActivity extends BaseActivity implements SwipeRefreshLayout.OnR
 //        getEquipsearch();
 //        getTiresearch();
 //        getDcsearch();
-        getEquipsearch();
 
+        swiperefres.postDelayed(new Runnable() {
 
+            @Override
+            public void run() {
+                // 更新数据  更新完后调用该方法结束刷新
+                getEquipsearch();
+                //刷新完成
+                swiperefres.setRefreshing(false);
+            }
+        }, 2000);
     }
 
     private boolean flag = true;

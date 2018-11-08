@@ -33,6 +33,8 @@ import com.land.netcar.min.SystemActivity;
 import com.land.netcar.min.adapter.ScrollingActivity;
 import com.land.netcar.min.bean.PointOutBean;
 import com.land.netcar.min.bean.StatusBean;
+import com.land.netcar.min.view.DialogCallBackListener;
+import com.land.netcar.min.view.LodingDialog;
 import com.land.netcar.min.view.QitaActivity;
 import com.land.netcar.urls.CloseActivityClass;
 import com.land.netcar.urls.UURL;
@@ -54,7 +56,7 @@ import okhttp3.Response;
  * create by ch
  * on 2018/11/6 13:53
  */
-public class HomeActivity extends Activity implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
+public class HomeActivity extends Activity implements View.OnClickListener, SwipeRefreshLayout.OnRefreshListener, DialogCallBackListener {
 
     /**
      * 胎温：11
@@ -65,9 +67,7 @@ public class HomeActivity extends Activity implements View.OnClickListener, Swip
      */
     private TextView mLeftTopYali;
     private ImageView mLeftTopGantan;
-    /**
-     * 胎温：11
-     */
+    private LodingDialog waitDialog;
     private TextView mRihtTopWendu;
     private PointOutBean bean;
     private TextView mRihtTopYali;
@@ -221,7 +221,10 @@ public class HomeActivity extends Activity implements View.OnClickListener, Swip
         }
     }
 
+    private String deviceid;
+
     private void getIndex() {
+        Loading();
         OkHttpClientManager.postAsyn(UURL.INDEX, new OkHttpClientManager.ResultCallback<String>() {
                     @Override
                     public void onError(Request request, Exception e) {
@@ -251,9 +254,11 @@ public class HomeActivity extends Activity implements View.OnClickListener, Swip
                             mRihtBottomYali.setText("胎压: " + String.valueOf(mStatusBean.getData().getInfo().get(0).getErb().getEtaiya()));
                             // 电量
                             m电量LT.setValue(mStatusBean.getData().getInfo().get(0).getEdianping() + "%");
-
-
+                            deviceid = mStatusBean.getData().getInfo().get(0).getDeviceid();
+                            UURL.equipsearch = deviceid;
+                            dismissDialog();
                         } else if (mStatusBean.getCode().equals("-102")) {
+                            dismissDialog();
                             LoginSp.loginchu(HomeActivity.this);
                             Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
                             startActivity(intent);
@@ -261,12 +266,15 @@ public class HomeActivity extends Activity implements View.OnClickListener, Swip
                             return;
                         } else if (mStatusBean.getCode().equals("-103")) {
                             Toast.makeText(HomeActivity.this, mStatusBean.getInfo(), Toast.LENGTH_SHORT).show();
+                            dismissDialog();
                             return;
                         } else if (mStatusBean.getCode().equals("-104")) {
                             Toast.makeText(HomeActivity.this, mStatusBean.getInfo(), Toast.LENGTH_SHORT).show();
+                            dismissDialog();
                             return;
                         } else {
                             Toast.makeText(HomeActivity.this, mStatusBean.getInfo(), Toast.LENGTH_SHORT).show();
+                            dismissDialog();
                         }
 
 
@@ -281,16 +289,18 @@ public class HomeActivity extends Activity implements View.OnClickListener, Swip
     }
 
     private void reFresh() {
-        String url = UURL.EQUIPSEARCH + "&token=" + LoginSp.gettoken(this) + "&deviceid=39804031";//+ UURL.equipsearch
+        Loading();
+        String url = UURL.EQUIPSEARCH + "&token=" + LoginSp.gettoken(this) + "&deviceid=" + deviceid;//+ UURL.equipsearch
         Log.d("aaaa1", url);
         OkHttpClientManager.getAsyn(url, new OkHttpClientManager.ResultCallback<String>() {
             @Override
             public void onError(Request request, Exception e) {
-
+                mSwipeRefreshLayout.setRefreshing(false);
             }
 
             @Override
             public void onResponse(String response) {
+                dismissDialog();
                 mSwipeRefreshLayout.setRefreshing(false);
                 Gson gson = new Gson();
                 JsonReader reader = new JsonReader(new StringReader(response));
@@ -339,14 +349,18 @@ public class HomeActivity extends Activity implements View.OnClickListener, Swip
     }
 
     private void isKaiGuan(int i) {
-
+        Loading();
         OkGo.post(UURL.EQUIPCONTROL)
                 .params("token", LoginSp.gettoken(HomeActivity.this))
                 .params("type", i)
-                .params("deviceid", UURL.equipsearch)
+                .params("deviceid", deviceid)
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(String s, Call call, Response response) {
+                        dismissDialog();
+                        Log.d("38901283912", s);
+                        Log.d("38901283912", deviceid);
+                        Log.d("38901283912", LoginSp.gettoken(HomeActivity.this));
                         PointOutBean bean = JSON.parseObject(s, PointOutBean.class);
                         if (bean.getCode().equals("0")) {
                             if (bean.getColor().equals("black")) {
@@ -381,16 +395,21 @@ public class HomeActivity extends Activity implements View.OnClickListener, Swip
                 });
     }
 
-    private void IsKaiGuan(int val) {
+    private void IsKaiGuan(final int val) {
+        Loading();
         OkGo.post(UURL.EQUIPCONTROL)
                 .params("token", LoginSp.gettoken(HomeActivity.this))
                 .params("type", "6")
                 .params("val", val + "")
-                .params("deviceid", UURL.equipsearch)
+                .params("deviceid", deviceid)
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(String s, Call call, Response response) {
-                        Log.d("ssdweds", s);
+                        dismissDialog();
+                        Log.d("38901283912", s);
+                        Log.d("38901283912", String.valueOf(val));
+                        Log.d("38901283912", deviceid);
+                        Log.d("38901283912", LoginSp.gettoken(HomeActivity.this));
                         bean = JSON.parseObject(s, PointOutBean.class);
                         Toast.makeText(HomeActivity.this, bean.getInfo(), Toast.LENGTH_SHORT).show();
                         if (bean.getCode().equals("-101")) {
@@ -411,5 +430,21 @@ public class HomeActivity extends Activity implements View.OnClickListener, Swip
 
                     }
                 });
+    }
+
+    public void Loading() {
+        waitDialog = new LodingDialog(HomeActivity.this, this, "");
+        waitDialog.setRoundName("加载中....");
+
+        waitDialog.show();
+    }
+
+    public void dismissDialog() {
+        waitDialog.dismiss();
+    }
+
+    @Override
+    public void ReceiveData(String flag) {
+
     }
 }
